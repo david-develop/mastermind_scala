@@ -1,4 +1,5 @@
 import scala.util.Random
+import scala.io.StdIn.readLine
 
 class circle {
     val colors: List[String] = List("R", "Y", "G", "B", "W", "M")
@@ -39,7 +40,7 @@ object Functions {
 		println("\n_____________________________\n")
 	}
 
-	def compare(player: Array[circle], bot: Array[circle]): Array[String] = {
+	def compare(player: Array[circle], bot: Array[circle]): Int = {
 		var answer: Array[String]=new Array[String](4)
 		var colors: Array[String]=new Array[String](4)
 
@@ -58,13 +59,23 @@ object Functions {
 			} 
 		}
 		answer.foreach(print)
-		(answer)
-
+                var count = 0
+                for (i <- 0 to 3) {
+                  if (answer(i) == "\u2713   ") {
+                    count += 1
+                  }
+                }
+                println(count)
+                if(count == 4) {
+                  return 1
+                } else {
+                  return 0
+                }
 	}
 }
 
 object Main {
-    def main(args: Array[String]) {
+    def main(args: Array[String]): Unit = {
 
 		var chip_bot:Array[circle]=new Array[circle](4)
 		var chip_player:Array[circle]=new Array[circle](4)
@@ -102,8 +113,12 @@ object Main {
 			for (i <- 0 to 3) {
 				chip_player(i).print_crl(chip_player(i).color, chip_player(i).form)
 			}
-			Functions.compare(chip_player, chip_bot)
+                        if (Functions.compare(chip_player, chip_bot) == 1) {
+                          println("------- YOU WIN :V ----------")
+                          return
+                        }
 			println("\n_____________________________\n")
 		}
+                println("--------- YOU LOSE :'V ------------")
 	}
 }
