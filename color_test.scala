@@ -104,7 +104,8 @@ object Main {
                 var flag = true
                 while (flag) {
                       // Number of oportunities
-                      for (cycles <- 0 to 9) {
+                      var cycles: Int = 0
+                      while (cycles <= 9) {
                               println("** Game # " + (cycles + 1) + " **")
                               // Player set chips
                               for (i <- 0 to 3) {
@@ -148,8 +149,10 @@ object Main {
                                     flag = false
                                             return
                                   }
+                                  cycles = -1
                               }
                               println("\n_____________________________\n")
+                              cycles += 1
 
                       }
                       println("--------- YOU LOSE :'V ------------")
