@@ -11,6 +11,7 @@
 ## Examples                                                                
 Please check this link: http://bog-c9-hack.holberton.us/2020/02/07/mastermind-with-scala-2/
 ## Prerequisites                                                           
+knowledge in programing language like Python, C or Java
 ## Built With
 
 All the code was write using scala 2.13.0  and jdk-8                            
