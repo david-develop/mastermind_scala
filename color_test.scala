@@ -37,14 +37,18 @@ object Functions {
                                                                       
                   by: the stallions cohort 9 BOG
                   """)
-		println("Welcome to mastermind of Stalion Team, BOG-Cohort-9")
-		println("Please select 4 color for you chips\nType the corresponding letter UPPERCASE")
+                println("----READ BEFORE START TO PLAY, THE NEXT INSTRUCCIONS-----\n")
+		println("Please select 4 color for you chips\nType the corresponding letter")
 		println("Yellow      (Y) -> " + Console.YELLOW + form + Console.RESET)
 		println("Red         (R) -> " + Console.RED + form + Console.RESET)
 		println("Magenta     (M) -> " + Console.MAGENTA + form + Console.RESET)
 		println("Blue        (B) -> " + Console.BLUE + form + Console.RESET)
 		println("Green       (G) -> " + Console.GREEN + form + Console.RESET)
 		println("White       (W) -> " + Console.WHITE + form + Console.RESET)
+                println("\n------------THIS HELP YOU WITH YOUR ANSWER--------------")
+                println("\u2713   you have the color and position ok")
+                println("~   You only have the color ok" )
+                println("X   You have wrong the color and position" )
 		println("\nYOU HAVE 10 OPORTUNITIES!\nGOOD LUCK!")
 
 		println("\n_____________________________\n")
@@ -75,7 +79,6 @@ object Functions {
 		    count += 1
                 }
                 }
-                println(count)
                 if(count == 4) {
                   return 1
                 } else {
@@ -93,15 +96,19 @@ object Main {
 		Functions.welcome()
 
 		// Set random pattern
-		for (i <- 0 to 3) {
-			chip_bot(i) = new circle()
-	   		//chip_bot(i).print_crl(chip_bot(i).color, chip_bot(i).form)
-		}
+                def fill_bot(chip_bot: Array[circle]): Unit = {
+                    for (i <- 0 to 3) {
+                            chip_bot(i) = new circle()
+                            //chip_bot(i).print_crl(chip_bot(i).color, chip_bot(i).form)
+                    }
+                }
+                fill_bot(chip_bot)
 		//println()
                 var flag = true
                 while (flag) {
                       // Number of oportunities
-                      for (cycles <- 0 to 9) {
+                      var cycles: Int = 0
+                      while (cycles <= 9) {
                               println("** Game # " + (cycles + 1) + " **")
                               // Player set chips
                               for (i <- 0 to 3) {
@@ -140,13 +147,16 @@ object Main {
                                                 Yesid Gutierrez
                                       """)
                                   var play_again: String  = ""
-                                  play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                                  play_again = readLine("Press any key if you want to play again or [N] for exit: ").toUpperCase()
                                   if (play_again.equals("N")) {
                                     flag = false
                                             return
                                   }
+                                  cycles = -1
+                                  fill_bot(chip_bot)
                               }
                               println("\n_____________________________\n")
+                              cycles += 1
 
                       }
                       println("--------- YOU LOSE :'V ------------")
@@ -165,10 +175,11 @@ object Main {
                                   Yesid Gutierrez
                         """)
                       var play_again: String  = ""
-                      play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                      play_again = readLine("Press any key if you want to play again or [N] for exit: ").toUpperCase()
                       if (play_again.equals("N")) {
                         flag = false
                       }
+                      fill_bot(chip_bot)
                 }
     }
 }
