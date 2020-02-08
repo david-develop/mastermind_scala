@@ -2,11 +2,11 @@ import scala.util.Random
 import scala.io.StdIn.readLine
 
 class circle {
-    val colors: List[String] = List("R", "Y", "G", "B", "W", "M")
-    val random = new Random
-    var color = colors(random.nextInt(colors.length))
-    val form = "\u2B24   "
-    def print_crl (color: String, form: String) : Unit = {
+	val colors: List[String] = List("R", "Y", "G", "B", "W", "M")
+	val random = new Random
+	var color = colors(random.nextInt(colors.length))
+	val form = "\u2B24   "
+	def print_crl (color: String, form: String) : Unit = {
 		if (color == "Y") {
 			print(Console.YELLOW + form + Console.RESET)
 		} else if (color == "R") {
@@ -20,13 +20,23 @@ class circle {
 		} else if (color == "M") {
 			print(Console.MAGENTA + form + Console.RESET)
 		}
-    }
+	}
 }
 
 object Functions {
 	def welcome() : Unit = {
 		// Welcome message
 		val form = "\u2B24   "
+				println("""
+                  ___  ___          _           ___  ____           _ 
+                  |  \/  |         | |          |  \/  (_)         | |
+                  | .  . | __ _ ___| |_ ___ _ __| .  . |_ _ __   __| |
+                  | |\/| |/ _` / __| __/ _ \ '__| |\/| | | '_ \ / _` |
+                  | |  | | (_| \__ \ ||  __/ |  | |  | | | | | | (_| |
+                  \_|  |_/\__,_|___/\__\___|_|  \_|  |_/_|_| |_|\__,_|
+                                                                      
+                  by: the stallions cohort 9 BOG
+                  """)
 		println("Welcome to mastermind of Stalion Team, BOG-Cohort-9")
 		println("Please select 4 color for you chips\nType the corresponding letter UPPERCASE")
 		println("Yellow      (Y) -> " + Console.YELLOW + form + Console.RESET)
@@ -59,11 +69,11 @@ object Functions {
 			} 
 		}
 		answer.foreach(print)
-                var count = 0
-                for (i <- 0 to 3) {
-                  if (answer(i) == "\u2713   ") {
-                    count += 1
-                  }
+		var count = 0
+		for (i <- 0 to 3) {
+  		if (answer(i) == "\u2713   ") {
+		    count += 1
+                }
                 }
                 println(count)
                 if(count == 4) {
@@ -88,37 +98,77 @@ object Main {
 	   		//chip_bot(i).print_crl(chip_bot(i).color, chip_bot(i).form)
 		}
 		//println()
+                var flag = true
+                while (flag) {
+                      // Number of oportunities
+                      for (cycles <- 0 to 9) {
+                              println("** Game # " + (cycles + 1) + " **")
+                              // Player set chips
+                              for (i <- 0 to 3) {
+                                      chip_player(i) = new circle()
+                                      var msn_str = "Set color of chip " + (i + 1) + ":  "
+                                      var flag = true
+                                      var input_color = ""
+                                      while (flag) {
+                                              input_color = readLine(msn_str).toUpperCase()
+                                              if (chip_player(i).colors.contains(input_color)) {
+                                                      flag = false
+                                              } else {
+                                                      println("Color doesn't exist, try again!")
+                                              }
+                                      }
+                                      chip_player(i).color = input_color
+                              }
 
-		// Number of oportunities
-		for (cycles <- 0 to 9) {
-			println("** Game # " + (cycles + 1) + " **")
-			// Player set chips
-			for (i <- 0 to 3) {
-				chip_player(i) = new circle()
-				var msn_str = "Set color of chip " + (i + 1) + ":  "
-				var flag = true
-				var input_color = ""
-				while (flag) {
-					input_color = readLine(msn_str)
-					if (chip_player(i).colors.contains(input_color)) {
-						flag = false
-					} else {
-						println("Color doesn't exist, try again!")
-					}
-				}
-				chip_player(i).color = input_color
-			}
+                              // Print player chips
+                              for (i <- 0 to 3) {
+                                      chip_player(i).print_crl(chip_player(i).color, chip_player(i).form)
+                              }
+                              if (Functions.compare(chip_player, chip_bot) == 1) {
+                                    println("""
+                                      ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗██╗███╗   ██╗
+                                      ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██║████╗  ██║
+                                       ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║██╔██╗ ██║
+                                        ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║██║╚██╗██║
+                                         ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝██║██║ ╚████║
+                                         ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝
+                                                THANKS FOR PLAYING...  CREDITS:
+                                                Carlos Molano
+                                                David Peralta
+                                                Edward Ortiz
+                                                Sebastian Montealegre
+                                                Yesid Gutierrez
+                                      """)
+                                  var play_again: String  = ""
+                                  play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                                  if (play_again.equals("N")) {
+                                    flag = false
+                                            return
+                                  }
+                              }
+                              println("\n_____________________________\n")
 
-			// Print player chips
-			for (i <- 0 to 3) {
-				chip_player(i).print_crl(chip_player(i).color, chip_player(i).form)
-			}
-                        if (Functions.compare(chip_player, chip_bot) == 1) {
-                          println("------- YOU WIN :V ----------")
-                          return
-                        }
-			println("\n_____________________________\n")
-		}
-                println("--------- YOU LOSE :'V ------------")
-	}
+                      }
+                      println("--------- YOU LOSE :'V ------------")
+                      println("""
+                        ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗███████╗
+                        ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝██╔════╝
+                         ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗█████╗
+                          ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║██╔══╝
+                           ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║███████╗
+                           ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝╚══════╝
+                                  THANKS FOR PLAYING...  CREDITS:
+                                  Carlos Molano
+                                  David Peralta
+                                  Edward Ortiz
+                                  Sebastian Montealegre
+                                  Yesid Gutierrez
+                        """)
+                      var play_again: String  = ""
+                      play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                      if (play_again.equals("N")) {
+                        flag = false
+                      }
+                }
+    }
 }
