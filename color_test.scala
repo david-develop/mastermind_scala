@@ -37,14 +37,18 @@ object Functions {
                                                                       
                   by: the stallions cohort 9 BOG
                   """)
-		println("Welcome to mastermind of Stalion Team, BOG-Cohort-9")
-		println("Please select 4 color for you chips\nType the corresponding letter UPPERCASE")
+                println("----READ BEFORE START TO PLAY, THE NEXT INSTRUCCIONS-----\n")
+		println("Please select 4 color for you chips\nType the corresponding letter")
 		println("Yellow      (Y) -> " + Console.YELLOW + form + Console.RESET)
 		println("Red         (R) -> " + Console.RED + form + Console.RESET)
 		println("Magenta     (M) -> " + Console.MAGENTA + form + Console.RESET)
 		println("Blue        (B) -> " + Console.BLUE + form + Console.RESET)
 		println("Green       (G) -> " + Console.GREEN + form + Console.RESET)
 		println("White       (W) -> " + Console.WHITE + form + Console.RESET)
+                println("\n------------THIS HELP YOU WITH YOUR ANSWER--------------")
+                println("\u2713   you have the color and position ok")
+                println("~   You only have the color ok" )
+                println("X   You have wrong the color and position" )
 		println("\nYOU HAVE 10 OPORTUNITIES!\nGOOD LUCK!")
 
 		println("\n_____________________________\n")
@@ -75,7 +79,6 @@ object Functions {
 		    count += 1
                 }
                 }
-                println(count)
                 if(count == 4) {
                   return 1
                 } else {
