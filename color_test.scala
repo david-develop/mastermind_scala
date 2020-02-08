@@ -96,10 +96,13 @@ object Main {
 		Functions.welcome()
 
 		// Set random pattern
-		for (i <- 0 to 3) {
-			chip_bot(i) = new circle()
-	   		//chip_bot(i).print_crl(chip_bot(i).color, chip_bot(i).form)
-		}
+                def fill_bot(chip_bot: Array[circle]): Unit = {
+                    for (i <- 0 to 3) {
+                            chip_bot(i) = new circle()
+                            //chip_bot(i).print_crl(chip_bot(i).color, chip_bot(i).form)
+                    }
+                }
+                fill_bot(chip_bot)
 		//println()
                 var flag = true
                 while (flag) {
@@ -144,12 +147,13 @@ object Main {
                                                 Yesid Gutierrez
                                       """)
                                   var play_again: String  = ""
-                                  play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                                  play_again = readLine("Press any key if you want to play again or [N] for exit: ").toUpperCase()
                                   if (play_again.equals("N")) {
                                     flag = false
                                             return
                                   }
                                   cycles = -1
+                                  fill_bot(chip_bot)
                               }
                               println("\n_____________________________\n")
                               cycles += 1
@@ -171,10 +175,11 @@ object Main {
                                   Yesid Gutierrez
                         """)
                       var play_again: String  = ""
-                      play_again = readLine("Do you want to play again: [Y/N]: ").toUpperCase()
+                      play_again = readLine("Press any key if you want to play again or [N] for exit: ").toUpperCase()
                       if (play_again.equals("N")) {
                         flag = false
                       }
+                      fill_bot(chip_bot)
                 }
     }
 }
