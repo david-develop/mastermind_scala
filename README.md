@@ -13,7 +13,7 @@ Please check this link: http://bog-c9-hack.holberton.us/2020/02/07/mastermind-wi
 
 ## Prerequisites
 - If you want to play you will need **scala** to compile and run the game
-- To undertand the code: Knowledge in programing language like Python, C or Java
+- To understand the code: Knowledge in programing language like Python, C or Java
 
 ## Built With
 
