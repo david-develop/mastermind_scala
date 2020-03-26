@@ -7,7 +7,7 @@
 
 
 # :colombia: Scala: MasterMind Game                                             
-- 
+
 ## Examples                                                                
 Please check this link: http://bog-c9-hack.holberton.us/2020/02/07/mastermind-with-scala-2/
 
